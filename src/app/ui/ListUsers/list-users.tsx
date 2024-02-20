@@ -3,7 +3,7 @@
 import { User } from '@/app/types'
 import { useQuery, QueryKey } from '@tanstack/react-query'
 import { getUsers } from '@/app/lib/api/get-users'
-import { useJwt } from '@/app/lib/jwt/use-jwt'
+import { xJwt } from '@/app/lib/jwt/use-jwt'
 
 interface ListUsersProps {
   queryKey: QueryKey
@@ -11,7 +11,8 @@ interface ListUsersProps {
 }
 
 export function ListUsers({ queryKey, users }: ListUsersProps) {
-  const jwt = useJwt()
+  const jwt = xJwt()
+  console.log(jwt)
   const { data } = useQuery<User[]>({
     queryKey,
     queryFn: () => getUsers({ jwt }),
